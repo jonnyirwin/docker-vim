@@ -71,7 +71,11 @@ RUN git clone https://github.com/Shougo/deoplete.nvim.git $MINPAC/start/deoplete
     
 RUN npm install -g tern
 
-RUN git clone https://github.com/carlitux/deoplete-ternjs $MINPAC/start/deoplete-ternjs  
+RUN git clone https://github.com/carlitux/deoplete-ternjs $MINPAC/start/deoplete-ternjs && \
+    echo "let g:deoplete#sources#ternjs#timeout = 1" >> $HOME/.vimrc && \
+    echo "let g:deoplete#sources#ternjs#types = 1" >> $HOME/.vimrc && \
+    echo "let g:deoplete#sources#ternjs#depths = 1" >> $HOME/.vimrc && \
+    echo "let g:deoplete#sources#ternjs#docs = 1" >> $HOME/.vimrc
 
 RUN mkdir /mnt/src
 WORKDIR /mnt/src
