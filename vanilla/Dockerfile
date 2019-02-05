@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-RUN apk add --update git vim python3
+RUN apk add --update git vim python3 python3-dev bash build-base py-pip nodejs
 
 ENV HOME /root
 ENV TERM xterm-256color
@@ -41,9 +41,38 @@ RUN git clone https://github.com/w0rp/ale.git $MINPAC/start/ale && \
     echo "nmap <silent> ]w <Plug>(ale_next)" >> $HOME/.vimrc && \
     echo "nmap <silent> ]W <Plug>(ale_last)" >> $HOME/.vimrc
 
-# TO-DO: deoplete and fzf or ctrlp
+RUN git clone https://github.com/junegunn/fzf.git $MINPAC/start/fzf && \
+    git clone https://github.com/junegunn/fzf.vim.git $MINPAC/start/fzf.vim && \
+    echo "nnoremap <C-p> :<C-u>FZF<CR>" >> $HOME/.vimrc
+
+#SHELL ["/bin/bash", "-c"]
+RUN $MINPAC/start/fzf/install --bin
+
+ENV PATH $MINPAC/start/fzf/bin:$PATH
+ENV FZF_DEFAULT_COMMAND 'git ls-files'
+
+RUN echo "set number relativenumber" >> $HOME/.vimrc && \
+  echo "set laststatus=2" >> $HOME/.vimrc && \
+  echo "set showtabline=2" >> $HOME/.vimrc && \
+  echo "set tabstop=2" >> $HOME/.vimrc && \
+  echo "set shiftwidth=2" >> $HOME/.vimrc && \
+  echo "set expandtab" >> $HOME/.vimrc && \
+  echo "set noshowmode" >> $HOME/.vimrc && \
+  echo "set ignorecase" >> $HOME/.vimrc && \
+  echo "set hlsearch" >> $HOME/.vimrc && \
+  echo "set undodir=~/.vim/undo" >> $HOME/.vimrc && \
+  echo "command! Wq wq" >> $HOME/.vimrc && \
+  echo "command! W w" >> $HOME/.vimrc
+
+RUN git clone https://github.com/Shougo/deoplete.nvim.git $MINPAC/start/deoplete.nvim && \
+    git clone https://github.com/roxma/nvim-yarp.git $MINPAC/start/nvim-yarp && \
+    git clone https://github.com/roxma/vim-hug-neovim-rpc.git $MINPAC/start/vim-hug-neovim-rpc && \
+    echo "let g:deoplete#enable_at_startup = 1" >> $HOME/.vimrc
+    
 
 RUN mkdir /mnt/src
 WORKDIR /mnt/src
+
+RUN pip3 install neovim
 
 CMD vim
