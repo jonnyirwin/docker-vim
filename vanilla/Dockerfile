@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-RUN apk add --update git vim python3 python3-dev bash build-base py-pip nodejs
+RUN apk add --update git vim python3 python3-dev bash build-base py-pip nodejs npm
 
 ENV HOME /root
 ENV TERM xterm-256color
@@ -69,6 +69,9 @@ RUN git clone https://github.com/Shougo/deoplete.nvim.git $MINPAC/start/deoplete
     git clone https://github.com/roxma/vim-hug-neovim-rpc.git $MINPAC/start/vim-hug-neovim-rpc && \
     echo "let g:deoplete#enable_at_startup = 1" >> $HOME/.vimrc
     
+RUN npm install -g tern
+
+RUN git clone https://github.com/carlitux/deoplete-ternjs $MINPAC/start/deoplete-ternjs  
 
 RUN mkdir /mnt/src
 WORKDIR /mnt/src
