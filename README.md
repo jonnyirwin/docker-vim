@@ -5,11 +5,11 @@ This is a repository used to generate docker images to run vim in a container wi
 To build images:
 
 ```
-docker build -t jonnyirwin/vim:vanilla ./vanilla
+docker build -t jonnyirwin/vim:latest .
 ```
 
 To run container:
 
 ```
-docker run --rm -it -v "/home/jonny/git/builder/:/mnt/src" jonnyirwin/vim:vanilla
+docker run --rm -it -v "/home:/mnt/src" jonnyirwin/vim:latest
 ```
