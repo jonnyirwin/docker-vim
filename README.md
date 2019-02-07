@@ -1,6 +1,6 @@
 # docker-vim #
 
-This is a repository used to generate docker images to run vim in a container with langauge sdk's etc. already installed.
+This is a repository used to generate docker images to run vim in a container with language sdk's etc. already installed.
 
 To build images:
 
