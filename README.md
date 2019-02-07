@@ -11,5 +11,5 @@ docker build -t jonnyirwin/vim:latest .
 To run container:
 
 ```
-docker run --rm -it -v "/home:/mnt/src" jonnyirwin/vim:latest
+docker run --rm -it -v "$(pwd):/mnt/src" jonnyirwin/vim:latest
 ```
