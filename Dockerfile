@@ -26,6 +26,7 @@ RUN git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
     git clone https://github.com/roxma/nvim-yarp.git $MINPAC/start/nvim-yarp && \
     git clone https://github.com/roxma/vim-hug-neovim-rpc.git $MINPAC/start/vim-hug-neovim-rpc && \
     git clone https://github.com/carlitux/deoplete-ternjs $MINPAC/start/deoplete-ternjs && \
+    git clone https://github.com/christoomey/vim-tmux-navigator $MINPAC/start/vim-tmux-navigator && \
     $MINPAC/start/fzf/install --bin && \
     pip3 install neovim && \
     npm install -g tern && \
