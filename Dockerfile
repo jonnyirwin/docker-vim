@@ -11,11 +11,11 @@ ENV FZF_DEFAULT_COMMAND 'git ls-files'
 RUN git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
     git clone https://github.com/scrooloose/nerdtree.git $MINPAC/start/nerdtree && \
     git clone https://github.com/chriskempson/base16-vim.git $MINPAC/start/base16-vim && \
-    git clone https://github.com/tpope/vim-projectionist.git $MINPAC/start/vim-projectionistc && \
-    git clone https://github.com/sgur/vim-editorconfig.git $MINPAC/start/vim-editorconfigc && \
-    git clone https://github.com/pangloss/vim-javascript.git $MINPAC/start/vim-javascriptc && \
-    git clone https://github.com/elzr/vim-json.git $MINPAC/start/vim-jsonc && \
-    git clone https://github.com/mxw/vim-jsx.git $MINPAC/start/vim-jsxc && \
+    git clone https://github.com/tpope/vim-projectionist.git $MINPAC/start/vim-projectionist && \
+    git clone https://github.com/sgur/vim-editorconfig.git $MINPAC/start/vim-editorconfig && \
+    git clone https://github.com/pangloss/vim-javascript.git $MINPAC/start/vim-javascript && \
+    git clone https://github.com/elzr/vim-json.git $MINPAC/start/vim-json && \
+    git clone https://github.com/mxw/vim-jsx.git $MINPAC/start/vim-jsx && \
     git clone https://github.com/mattn/emmet-vim.git $MINPAC/start/emmet-vim && \
     git clone https://github.com/vim-airline/vim-airline.git $MINPAC/start/vim-airline && \
     git clone https://github.com/vim-airline/vim-airline-themes.git $MINPAC/start/vim-airline-themes && \
@@ -27,14 +27,15 @@ RUN git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
     git clone https://github.com/roxma/vim-hug-neovim-rpc.git $MINPAC/start/vim-hug-neovim-rpc && \
     git clone https://github.com/carlitux/deoplete-ternjs $MINPAC/start/deoplete-ternjs && \
     git clone https://github.com/christoomey/vim-tmux-navigator $MINPAC/start/vim-tmux-navigator && \
+    git clone https://github.com/othree/jspc.vim $MINPAC/start/jspc.vim && \
+    git clone https://github.com/SirVer/ultisnips $MINPAC/start/ultisnips && \
+    git clone https://github.com/honza/vim-snippets $MINPAC/start/vim-snippets && \
     $MINPAC/start/fzf/install --bin && \
     pip3 install neovim && \
-    npm install -g tern && \
+    npm install -g tern prettier eslint && \
     mkdir /mnt/src
 
 WORKDIR /mnt/src
-
-RUN npm install prettier eslint && npm install
 
 COPY ftplugin/jsx.vim $HOME/.vim/after/ftplugin/jsx.vim
 COPY .vimrc $HOME/.vimrc
