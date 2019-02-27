@@ -30,6 +30,7 @@ RUN git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
     git clone https://github.com/othree/jspc.vim $MINPAC/start/jspc.vim && \
     git clone https://github.com/SirVer/ultisnips $MINPAC/start/ultisnips && \
     git clone https://github.com/honza/vim-snippets $MINPAC/start/vim-snippets && \
+    git clone https://github.com/ervandew/supertab $MINPAC/start/supertab && \
     $MINPAC/start/fzf/install --bin && \
     pip3 install neovim && \
     npm install -g tern prettier eslint && \
