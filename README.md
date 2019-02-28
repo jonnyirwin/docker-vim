@@ -1,6 +1,6 @@
 # Dockerized and pre-configured Vim #
 
-This is a repository used to generate docker images to run vim in a container with language sdk's etc. already installed.  Currently it is configured ofr javascript development.
+Used to generate docker images to run vim in a docker container with language sdk's etc. already installed.  Currently it is configured for javascript development.  It uses a number of vim plugins for linting, autocompletion, auto-formatting, fast file navigation.
 
 To run container:
 
