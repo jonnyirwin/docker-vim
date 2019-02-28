@@ -7,8 +7,12 @@ ENV TERM xterm-256color
 ENV MINPAC $HOME/.vim/pack/minpac
 ENV PATH $MINPAC/start/fzf/bin:$PATH
 ENV FZF_DEFAULT_COMMAND 'git ls-files'
+ENV BASE16_SHELL $HOME/.config/base16-shell
+ENV BASE16_THEME oceanicnext
+ENV POWERLINE_FONTS_ENABLED false
 
-RUN git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
+RUN git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell && \
+    git clone https://github.com/k-takata/minpac.git $MINPAC/opt/minpac && \
     git clone https://github.com/scrooloose/nerdtree.git $MINPAC/start/nerdtree && \
     git clone https://github.com/chriskempson/base16-vim.git $MINPAC/start/base16-vim && \
     git clone https://github.com/tpope/vim-projectionist.git $MINPAC/start/vim-projectionist && \
@@ -41,4 +45,7 @@ WORKDIR /mnt/src
 COPY ftplugin/jsx.vim $HOME/.vim/after/ftplugin/jsx.vim
 COPY .vimrc $HOME/.vimrc
 
-CMD vim
+CMD [ -s $BASE16_SHELL/profile_helper.sh ] && \
+    eval "$($BASE16_SHELL/profile_helper.sh)" && \
+    _base16 $BASE16_SHELL/scripts/base16-$BASE16_THEME.sh $BASE16_THEME && \
+    vim

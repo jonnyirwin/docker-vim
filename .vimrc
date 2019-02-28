@@ -2,15 +2,20 @@ packadd minpac
 call minpac#init()
 
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
-colorscheme base16-oceanicnext
 syntax on
 filetype plugin on
 
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = { 'javascript.jsx' : { 'extends' : 'jsx', }, }
 
-let g:airline_theme='base16_oceanicnext'
-let g:airline_powerline_fonts = 1
+let g:airline_theme="base16_".$BASE16_THEME
+
+if $POWERLINE_FONTS_ENABLED == 'true'
+  let g:airline_powerline_fonts = 1
+else
+  let g:airline_powerline_fonts = 0
+endif
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -47,3 +52,10 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+colorscheme base16-$BASE16_THEME
